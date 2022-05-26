@@ -1,0 +1,168 @@
+/* CSS Document
+
+Theme Name: B.Angel_Art
+Template: astra
+Version: 3.8.1
+Author: Magnus Dalkvist
+Description: Stylish Child Theme based on Astra
+
+*/
+
+.powered-by-wordpress {
+  display: none;
+}
+
+div#content.site-content {
+  background-image: url(https://tessafan.dk/bangelart/wp-content/uploads/2022/05/background-1.png);
+}
+
+.newsletter {
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+
+.newsletter #email {
+  width: 100%;
+}
+
+.newsletter #email:focus {
+  outline: none;
+}
+
+.newsletter #submit,
+.newsletter #email {
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 0;
+}
+
+.site-above-footer-wrap[data-section="section-above-footer-builder"] {
+  padding: 30px 1rem;
+  box-shadow: 0px 0 10px 3px rgba(0, 0, 0, 0.16);
+  position: relative;
+}
+
+.site-primary-footer-wrap[data-section="section-primary-footer-builder"] {
+  border: none;
+}
+
+.shadow {
+  box-shadow: 0px 0 10px 3px rgba(0, 0, 0, 0.16);
+}
+
+#main .group-padding-large {
+  padding: 70px 0px;
+}
+
+#main .group-padding-small {
+  padding: 30px 0px;
+}
+
+#main h1,
+#main h2,
+#main h3,
+#main h4,
+#main p,
+#colophon .widget_block {
+  margin: 0;
+}
+
+#main .wp-block-columns,
+#main .wp-block-buttons,
+#colophon #block-10,
+#main figure,
+#main figcaption {
+  margin: 10px 0 0;
+}
+
+#main .transparrent-btn a {
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.4);
+  color: black;
+  font-weight: bold;
+}
+
+#main .transparrent-btn a:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#main .transparrent-btn a:active {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+#main .splash-text {
+  margin-bottom: 70px;
+}
+
+/* #ast-desktop-header {
+  position: fixed;
+  inset: 0;
+}
+
+#ast-desktop-header .main-header-bar {
+  border: none;;
+} */
+
+#primary-site-navigation li {
+  line-height: unset;
+}
+
+#primary-site-navigation ul {
+  gap: 20px;
+}
+
+#primary-site-navigation li a {
+  position: relative;
+  padding: 0;
+}
+
+#primary-site-navigation li a:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 3px;
+  background-color: black;
+  transform-origin: center;
+  transition: transform 0.25s;
+}
+
+#primary-site-navigation li a:hover:after,
+#primary-site-navigation li.current-menu-item a:after {
+  transform: scaleX(1);
+  transform-origin: center;
+}
+
+.ast-mobile-header-content.content-align-flex-start {
+  position: absolute;
+}
+
+.wp-container-9.wp-block-columns.is-not-stacked-on-mobile {
+  overflow: hidden;
+}
+
+.wp-container-9.wp-block-columns.is-not-stacked-on-mobile > div {
+  min-width: 150px;
+}
+
+.ast-builder-footer-grid-columns.site-primary-footer-inner-wrap.ast-builder-grid-row {
+  justify-items: center;
+}
+
+#colophon .wp-container-15 {
+  gap: 1rem;
+}
+
+@media (max-width: 545px) {
+  #colophon .ast-builder-html-element > p {
+    text-align: center !important;
+  }
+}
+
+img.wp-block-cover__image-background.wp-image-262 {
+  object-fit: contain;
+}
