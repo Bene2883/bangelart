@@ -10,6 +10,7 @@ get_header();
 		#content {
 		  	padding: 70px 0;
 		}
+
 		.single-view {
 			max-width: 1200px;
 			margin: 0 auto;
@@ -166,7 +167,7 @@ get_header();
 				images.forEach(e => {
 					document.querySelector(".item-gallery").innerHTML += `<div style="background-image: url(${e.guid})" class="item">` 
 				});
-				document.querySelector(".title").textContent = produkt.title.rendered;
+				document.querySelector(".title").innerHTML = produkt.title.rendered;
 				document.querySelector(".price").textContent = `${produkt.price} DKK`;
 				document.querySelector(".desc").innerHTML = produkt.description;
 			}

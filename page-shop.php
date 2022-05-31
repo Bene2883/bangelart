@@ -19,8 +19,8 @@ get_header();
 
 <style>
 	#primary {
-	  max-width: 1200px;
-	  margin: 0 auto;
+	  	max-width: 1200px;
+	  	margin: 0 auto;
 	}
 
 	#filter {
@@ -55,26 +55,27 @@ get_header();
 	}
 
 	#container {
-	  padding-top: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 40px 20px;
+	  	padding-top: 20px;
+      	display: grid;
+      	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+     	gap: 40px 20px;
     }
 
     .grid-menu {
-      cursor: pointer;
-	  display: grid;
-	  border-radius: 10px;
+		cursor: pointer;
+		display: grid;
+		border-radius: 10px;
+		gap: .5rem;
     }
 
     .grid-menu .img, .grid-menu .overlay {
-	  object-fit: cover;
-      background-position: center;
-	  background-size: cover;
-      aspect-ratio: 3/4;
-	  grid-row: 1/2;
-	  grid-column: 1/2;
-	  transition: 500ms;
+		object-fit: cover;
+		background-position: center;
+		background-size: cover;
+		aspect-ratio: 3/4;
+		grid-row: 1/2;
+		grid-column: 1/2;
+		transition: 500ms;
     }
 
 	.grid-menu .overlay {
@@ -98,13 +99,16 @@ get_header();
 		padding: 70px 0;
 	}
 
-	@media (max-width: 545px) {
+	@media (max-width: 575px) {
 		#filter {
 			padding-top: 10px; 
 		}
 		#content {
 			padding: 30px 0 50px;
 		}
+		#container {
+     	 	grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    	}
 	}
 
 </style>
@@ -166,7 +170,7 @@ get_header();
 						let klon = temp.cloneNode(true).content;
 						klon.querySelector(".img").style.backgroundImage = `url("${produkt.image[0].guid}")`;
 						klon.querySelector(".overlay").style.backgroundImage = `url("${produkt.image[1].guid}")`;
-						klon.querySelector(".title").textContent = produkt.title.rendered;
+						klon.querySelector(".title").innerHTML = produkt.title.rendered;
 						if (produkt.categories.includes(6)) {
 							klon.querySelector(".info").classList.add("globalt-medborgerskab");
 						} else if (produkt.categories.includes(5)) {

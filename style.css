@@ -8,6 +8,23 @@ Description: Stylish Child Theme based on Astra
 
 */
 
+@import url("https://use.typekit.net/pfn5dgo.css");
+
+body {
+  font-family: gimlet-micro, serif;
+}
+
+h1,
+h2,
+.site-title,
+.quote_text {
+  font-family: smoothy, sans-serif;
+}
+
+.site-title {
+  font-size: 48px;
+}
+
 .powered-by-wordpress {
   display: none;
 }
@@ -79,7 +96,7 @@ div#content.site-content {
 }
 
 #main .transparrent-btn a {
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(2px);
   background-color: rgba(255, 255, 255, 0.4);
   color: black;
   font-weight: bold;
@@ -94,7 +111,7 @@ div#content.site-content {
 }
 
 #main .splash-text {
-  margin-bottom: 70px;
+  margin-bottom: 140px;
 }
 
 /* #ast-desktop-header {
@@ -139,10 +156,26 @@ div#content.site-content {
 
 .ast-mobile-header-content.content-align-flex-start {
   position: absolute;
+  width: 100%;
 }
 
 .wp-container-9.wp-block-columns.is-not-stacked-on-mobile {
-  overflow: hidden;
+  overflow-x: scroll;
+}
+
+.wp-container-9.wp-block-columns.is-not-stacked-on-mobile::-webkit-scrollbar {
+  height: 5px;
+}
+
+.wp-container-9.wp-block-columns.is-not-stacked-on-mobile::-webkit-scrollbar-track {
+  border-radius: 10px;
+  display: none;
+  background-color: lightgrey;
+}
+
+.wp-container-9.wp-block-columns.is-not-stacked-on-mobile::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
 }
 
 .wp-container-9.wp-block-columns.is-not-stacked-on-mobile > div {
@@ -157,12 +190,54 @@ div#content.site-content {
   gap: 1rem;
 }
 
+img.wp-block-cover__image-background.wp-image-262 {
+  object-fit: contain;
+}
+
+.wp-container-2.wp-block-group.contact-paint {
+  background-image: url(https://tessafan.dk/bangelart/wp-content/uploads/2022/05/paint.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 40px 0;
+  text-align: center;
+}
+
+article.page {
+  padding: 70px 0;
+}
+
+article#post-103 {
+  padding: 0;
+}
+
+.quote_text {
+  font-size: 32px;
+  color: #9989ba;
+  text-align: center;
+  padding: 2rem 5% 0;
+}
+
+div.wp-container-1 > * + * {
+  margin-block-start: 0;
+}
+
+.reverse_wrap {
+  flex-wrap: wrap-reverse !important;
+}
+
+main .contact-form textarea {
+  height: 100px;
+}
+
 @media (max-width: 545px) {
   #colophon .ast-builder-html-element > p {
     text-align: center !important;
   }
-}
-
-img.wp-block-cover__image-background.wp-image-262 {
-  object-fit: contain;
+  article.page {
+    padding: 30px 0 50px;
+  }
+  .wp-container-9.wp-block-columns.is-not-stacked-on-mobile::-webkit-scrollbar {
+    display: block;
+  }
 }
