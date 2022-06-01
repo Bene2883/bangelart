@@ -6,6 +6,7 @@
 get_header();
 ?>
 
+<!-- template for produkter -->
 <template>
 	<article class="grid-menu">
       	<div class="img"></div>
@@ -18,19 +19,13 @@ get_header();
 </template>
 
 <style>
+	/* max-width */
 	#primary {
 	  	max-width: 1200px;
 	  	margin: 0 auto;
 	}
 
-	#filter {
-		display: grid;
-     	grid-template-columns: repeat(auto-fill, minmax(187px, 1fr));
-		gap: 10px 20px;
-		font-size: 20px;
-		padding-top: 30px; 
-	}
-
+	/* filter knapper */
 	#filter button {
 		display: flex;
 		justify-content: center;
@@ -48,12 +43,21 @@ get_header();
 		text-decoration: none;
 	}
 
+	#filter {
+		display: grid;
+     	grid-template-columns: repeat(auto-fill, minmax(187px, 1fr));
+		gap: 10px 20px;
+		font-size: 20px;
+		padding-top: 30px; 
+	}
+
 	#filter .selected {
 		border: 2px solid black;
 		color: black;
 		text-decoration: none;
 	}
 
+	/* størrelse af produkter i grid */
 	#container {
 	  	padding-top: 20px;
       	display: grid;
@@ -61,6 +65,7 @@ get_header();
      	gap: 40px 20px;
     }
 
+	/* produkter styling */
     .grid-menu {
 		cursor: pointer;
 		display: grid;
@@ -78,6 +83,7 @@ get_header();
 		transition: 500ms;
     }
 
+	/* hover effekt */
 	.grid-menu .overlay {
 		opacity: 0;
 	}
@@ -86,6 +92,7 @@ get_header();
 		opacity: 1;
 	}
 
+	/* størrelser, padding og margin */
 	.title {
 		margin: 5px 0;
 		font-size: 14px;
@@ -99,6 +106,7 @@ get_header();
 		padding: 70px 0;
 	}
 
+	/* mobil størrelse */
 	@media (max-width: 575px) {
 		#filter {
 			padding-top: 10px; 
@@ -132,9 +140,11 @@ get_header();
 			let filterProdukt = "alle";
 			const select = document.querySelector("#filter select");
 
+			// database links
 			const dbUrl = "https://tessafan.dk/bangelart/wp-json/wp/v2/produkt?per_page=100";
 			const catUrl = "https://tessafan.dk/bangelart/wp-json/wp/v2/categories?per_page=100";
 
+			// indlæs Json
 			async function getJson() {
 				const data = await fetch(dbUrl);
 				const catdata = await fetch(catUrl);
@@ -146,6 +156,7 @@ get_header();
 				addEventListenerToButtons()
 			}
 
+			// knap funtionalitet
 			function addEventListenerToButtons() {
 				document.querySelectorAll("#filter button").forEach(element => {
 					element.addEventListener("click", filtrering)
@@ -160,6 +171,7 @@ get_header();
 				console.log(filterProdukt);
 			}
 
+			// indlæs produkter
 			function visProdukter() {
 				let container = document.querySelector("#container");
      			let temp = document.querySelector("template");
@@ -168,20 +180,12 @@ get_header();
 					if (filterProdukt == "alle" || produkt.categories.includes(parseInt(filterProdukt))) {
 						console.log(produkt.categories);
 						let klon = temp.cloneNode(true).content;
-						klon.querySelector(".img").style.backgroundImage = `url("${produkt.image[0].guid}")`;
-						klon.querySelector(".overlay").style.backgroundImage = `url("${produkt.image[1].guid}")`;
-						klon.querySelector(".title").innerHTML = produkt.title.rendered;
-						if (produkt.categories.includes(6)) {
-							klon.querySelector(".info").classList.add("globalt-medborgerskab");
-						} else if (produkt.categories.includes(5)) {
-							klon.querySelector(".info").classList.add("baeredygtig-udvikling");
-						} else if (produkt.categories.includes(24)) {
-							klon.querySelector(".info").classList.add("unesco-verdensmalsskoler");
-						}
-						
+						klon.querySelector(".img").style.backgroundImage = `url("${produkt.image[0].guid}")`; //vælger det første billede i image array
+						klon.querySelector(".overlay").style.backgroundImage = `url("${produkt.image[1].guid}")`; //vælger sekundært billede til hover effekt
+						klon.querySelector(".title").innerHTML = produkt.title.rendered;			
 						klon.querySelector(".price").textContent = `${produkt.price} DKK`;
 						klon.querySelector("article").addEventListener("click", () => {
-							location.href = produkt.link;
+							location.href = produkt.link; //leder til single view
 						})
 						container.appendChild(klon);
 					}

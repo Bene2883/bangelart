@@ -7,10 +7,7 @@ get_header();
 ?>
 
 	<style>
-		#content {
-		  	padding: 70px 0;
-		}
-
+		/* max-width */
 		.single-view {
 			max-width: 1200px;
 			margin: 0 auto;
@@ -18,36 +15,49 @@ get_header();
 			grid-template-columns: 1fr 1fr;
 			gap: 50px;
 		}
+
+		/* galleri opsætning */
 		.item-gallery {
 			display: flex;
 			flex-wrap: wrap;
 			gap: 20px;
 			width: 100%;
 		}
+
 		.item {
 			width: 100%;
 			aspect-ratio: 3/4;
 			background-size: cover;
 			background-position: center;
 		}
+
+		/* opsætning af billeder afhængigt af antal af billeder i database */
 		.item:nth-of-type(1) {
 			flex: 0 0 100%;
 		}
+
 		.item:nth-of-type(2), .item:nth-of-type(3) {
 			flex: 1;
 		}
+
 		.item:nth-of-type(4) {
 			flex: 0 0 100%;
 		}
+
+		/* styling af produkt info del */
+		.top, 
 		.bottom {
 			display: flex;
 			flex-direction: column;
 		}
+
 		.item-info {
 			display: flex;
 			flex-direction: column;
 			gap: 50px;
 		}
+
+		/* knapper */
 		.amount-btn, a.buy-btn {
 			display: flex;
 			background: white;
@@ -57,34 +67,46 @@ get_header();
 			transition: none;
 			user-select: none;
 		}
+
 		.amount-btn {
 			align-self: flex-start;
 		}
+
 		.remove, .add, .amount {
 			width: 50px;
 			padding: 1rem;
 			text-align: center;
 		}
+
+		/* knapper hover effekt */
 		.remove:hover, .add:hover {
 			background: lightgrey;
 		}
+
 		.remove:active, .add:active {
 			background: grey;
 		}
+
 		.buy-btn:hover {
 			background: lightgrey;
 		}
+
 		.buy-btn:active {
 			background: grey;
 		}
+
 		.buy-btn {
 			padding: 1rem;
 			text-decoration: none;
 			color: black;
 		}
+
+		/* typografi */
 		p, h1 {
 			margin: 0;
 		}
+		
+		/* mobil størrelse */
 		@media (max-width: 545px) {
 			#content {
 				padding: 30px 0 50px;
@@ -127,8 +149,10 @@ get_header();
 			let produkt;
 			let amount = 1;
 
+			// fjern antal produkt knap
 			document.querySelector(".remove").addEventListener("click", removeItem)
 
+			//fjern antal 
 			function removeItem() {
 				if (amount > 1) {
 					amount--;
@@ -136,15 +160,19 @@ get_header();
 				document.querySelector(".amount").textContent = amount;
 			}
 
+			// tilføj antal produkt knap
 			document.querySelector(".add").addEventListener("click", addItem)
 
+			// tilføj produkt
 			function addItem() {
 				amount++;
 				document.querySelector(".amount").textContent = amount;
 			}
 
+			// køb knap
 			document.querySelector(".buy-btn").addEventListener("click", buyItem)
 
+			// køb knap nulstil antal produkter
 			function buyItem() {
 				amount = 1;
 				document.querySelector(".amount").textContent = amount;
@@ -154,6 +182,7 @@ get_header();
 				}, 1000);
 			}
 
+			// hent produkt data
 			const dbUrl = "https://tessafan.dk/bangelart/wp-json/wp/v2/produkt/"+<?php echo get_the_ID() ?>;
 
 			async function getJson() {
@@ -164,6 +193,7 @@ get_header();
 
 			function visProdukt() {
 				const images = produkt.image;
+				// tilføj alle billeder i arrayet
 				images.forEach(e => {
 					document.querySelector(".item-gallery").innerHTML += `<div style="background-image: url(${e.guid})" class="item">` 
 				});

@@ -6,6 +6,7 @@
 get_header();
 ?>
 
+<!-- template til produkter i bunden af siden -->
 <template>
 	<article class="grid-menu">
       	<div class="img"></div>
@@ -18,15 +19,50 @@ get_header();
 </template>
 
 <style>
+	/* max-width */
 	#primary {
 	  	max-width: 1200px;
 	  	margin: 0 auto;
+	}
+
+	/* produkt styling */
+	#container {
+	  	padding-top: 20px;
+      	display: grid;
+      	grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+     	gap: 40px 20px;
+    }
+
+    .grid-menu {
+		cursor: pointer;
+		display: grid;
+		border-radius: 10px;
+		gap: .5rem;
+    }
+
+    .grid-menu .img, .grid-menu .overlay {
+		object-fit: cover;
+		background-position: center;
+		background-size: cover;
+		aspect-ratio: 3/4;
+		grid-row: 1/2;
+		grid-column: 1/2;
+		transition: 500ms;
+    }
+
+	.grid-menu .overlay {
+		opacity: 0;
+	}
+
+	.grid-menu .overlay:hover {
+		opacity: 1;
 	}
 
 	.horoskop_mobile {
 		display: none;
 	} 
 
+	/* horoskop grid og opbygning af horoskop cirkel */
     .horoskop_web {
         width: 100%;
         display: grid;
@@ -101,6 +137,7 @@ get_header();
 		transform: scale(-1.1);
 	}
 
+	/* rotationer */
 	.tyr {
 		transform: rotate(105deg);
 	}
@@ -197,38 +234,7 @@ get_header();
 		transform: rotate(-75deg);
 	}
 
-	#container {
-	  	padding-top: 20px;
-      	display: grid;
-      	grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
-     	gap: 40px 20px;
-    }
-
-    .grid-menu {
-		cursor: pointer;
-		display: grid;
-		border-radius: 10px;
-		gap: .5rem;
-    }
-
-    .grid-menu .img, .grid-menu .overlay {
-		object-fit: cover;
-		background-position: center;
-		background-size: cover;
-		aspect-ratio: 3/4;
-		grid-row: 1/2;
-		grid-column: 1/2;
-		transition: 500ms;
-    }
-
-	.grid-menu .overlay {
-		opacity: 0;
-	}
-
-	.grid-menu .overlay:hover {
-		opacity: 1;
-	}
-
+	/* størrelse, padding og margin */
 	.title {
 		margin: 5px 0;
 		font-size: 14px;
@@ -246,6 +252,7 @@ get_header();
 		text-decoration: underline;
 	}
 
+	/* mobil størrelse */
 	@media (max-width: 921px) {
 		.horoskop_web {
 			display: none;
@@ -496,15 +503,17 @@ get_header();
             <section id="container"></section>
 		</main><!-- #main -->
 		
-		<script>
+		<script> //indlæsning af produkt data
 			let produkter;
 			let categories;
-			let filterProdukt = "22";
+			let filterProdukt = "22"; //sorter efter stjernetegn
 			const select = document.querySelector("#filter select");
 
+			// database links
 			const dbUrl = "https://tessafan.dk/bangelart/wp-json/wp/v2/produkt?per_page=100";
 			const catUrl = "https://tessafan.dk/bangelart/wp-json/wp/v2/categories?per_page=100";
 
+			// indlæs Json
 			async function getJson() {
 				const data = await fetch(dbUrl);
 				const catdata = await fetch(catUrl);
@@ -516,6 +525,7 @@ get_header();
 				addEventListenerToButtons()
 			}
 
+			// knap funtionalitet
 			function addEventListenerToButtons() {
 				document.querySelectorAll("#filter button").forEach(element => {
 					element.addEventListener("click", filtrering)
@@ -530,28 +540,21 @@ get_header();
 				console.log(filterProdukt);
 			}
 
+			// indlæs produkter
 			function visProdukter() {
 				let container = document.querySelector("#container");
      			let temp = document.querySelector("template");
 				container.innerHTML = ""; 
 				produkter.forEach(produkt => {
-					if (produkt.categories.includes(parseInt(filterProdukt))) {
+					if (filterProdukt == "alle" || produkt.categories.includes(parseInt(filterProdukt))) {
 						console.log(produkt.categories);
 						let klon = temp.cloneNode(true).content;
-						klon.querySelector(".img").style.backgroundImage = `url("${produkt.image[0].guid}")`;
-						klon.querySelector(".overlay").style.backgroundImage = `url("${produkt.image[1].guid}")`;
-						klon.querySelector(".title").innerHTML = produkt.title.rendered;
-						if (produkt.categories.includes(6)) {
-							klon.querySelector(".info").classList.add("globalt-medborgerskab");
-						} else if (produkt.categories.includes(5)) {
-							klon.querySelector(".info").classList.add("baeredygtig-udvikling");
-						} else if (produkt.categories.includes(24)) {
-							klon.querySelector(".info").classList.add("unesco-verdensmalsskoler");
-						}
-						
+						klon.querySelector(".img").style.backgroundImage = `url("${produkt.image[0].guid}")`; //vælger det første billede i image array
+						klon.querySelector(".overlay").style.backgroundImage = `url("${produkt.image[1].guid}")`; //vælger sekundært billede til hover effekt
+						klon.querySelector(".title").innerHTML = produkt.title.rendered;			
 						klon.querySelector(".price").textContent = `${produkt.price} DKK`;
 						klon.querySelector("article").addEventListener("click", () => {
-							location.href = produkt.link;
+							location.href = produkt.link; //leder til single view
 						})
 						container.appendChild(klon);
 					}
