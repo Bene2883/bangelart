@@ -105,6 +105,10 @@ get_header();
 		p, h1 {
 			margin: 0;
 		}
+
+		#content {
+			padding: 70px 0;
+		}
 		
 		/* mobil størrelse */
 		@media (max-width: 545px) {
