@@ -149,9 +149,18 @@ div#content.site-content {
 }
 
 #primary-site-navigation li a:hover:after,
-#primary-site-navigation li.current-menu-item a:after {
+#primary-site-navigation li.current-menu-item a:after,
+#primary-site-navigation li.current-menu-parent a:after {
   transform: scaleX(1);
   transform-origin: center;
+}
+
+#primary-site-navigation ul.sub-menu li a:after {
+  display: none;
+}
+
+.ast-desktop .main-header-menu.ast-menu-shadow .sub-menu {
+  box-shadow: none;
 }
 
 .ast-mobile-header-content.content-align-flex-start {
@@ -228,6 +237,29 @@ div.wp-container-1 > * + * {
 
 main .contact-form textarea {
   height: 100px;
+}
+
+.icon-cart svg {
+  fill: black;
+  height: 1.5em;
+}
+
+span.ast-icon.icon-cart {
+  display: flex;
+}
+
+.kollektioner .aspect-ratio img {
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.entry-content .kollektioner a {
+  text-decoration: none;
+  color: black;
+}
+
+.kollektioner .aspect-top img {
+  object-position: top;
 }
 
 @media (max-width: 545px) {
