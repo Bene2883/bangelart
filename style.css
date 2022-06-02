@@ -104,6 +104,10 @@ div#content.site-content {
   margin: 10px 0 0;
 }
 
+#colophon #block-10 {
+  margin: 20px 0;
+}
+
 article.page {
   padding: 70px 0;
 }
@@ -130,7 +134,7 @@ article#post-103 {
 
 /* splash */
 #main .splash-text {
-  margin-bottom: 140px;
+  margin-bottom: 10vh;
 }
 
 /* nav */
@@ -211,13 +215,31 @@ span.ast-icon.icon-cart {
   display: flex;
 }
 
-/* footer */
-.ast-builder-footer-grid-columns.site-primary-footer-inner-wrap.ast-builder-grid-row {
-  justify-items: center;
+.ast-mobile-popup-content {
+  display: flex !important;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-#colophon .wp-container-15 {
-  gap: 1rem;
+/* footer */
+.footer-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0 1rem;
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.footer-icons a {
+  display: flex;
+}
+
+.footer-icons.payment svg {
+  width: 48px;
+  height: 48px;
 }
 
 /* maling klat baggrund */
