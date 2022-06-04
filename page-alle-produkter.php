@@ -98,6 +98,7 @@ get_header();
 		margin: 5px 0;
 		font-size: 14px;
 	}
+	
 	.price {
 		margin: 5px 0;
 		font-size: 20px;
