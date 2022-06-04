@@ -13,7 +13,7 @@ get_header();
 			margin: 0 auto;
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			gap: 50px;
+			gap: 0 50px;
 		}
 
 		/* galleri opsætning */
@@ -21,6 +21,7 @@ get_header();
 			display: flex;
 			flex-wrap: wrap;
 			gap: 20px;
+			margin-bottom: 20px;
 			width: 100%;
 		}
 
@@ -109,6 +110,16 @@ get_header();
 		#content {
 			padding: 70px 0;
 		}
+
+		.back-button {
+			display: flex;
+		}
+
+		.back {
+			cursor: pointer;
+			position: relative;
+			height: 28px;
+		}
 		
 		/* mobil størrelse */
 		@media (max-width: 545px) {
@@ -127,6 +138,9 @@ get_header();
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
+			<div class="back-button">
+				<a class="back" onclick="history.back()">← Gå tilbage</a>
+			</div>
 			<article class="single-view">
 				<div class="item-gallery"></div>
 				<div class="item-info">

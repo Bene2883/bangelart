@@ -69,7 +69,7 @@ get_header();
         justify-content: center;
 		align-items: center;
 		justify-items: center;
-		padding: 150px 0 ;
+		padding: 200px 0 ;
     }
 
 	.horoskop_web .circle {
@@ -248,6 +248,10 @@ get_header();
 		padding: 70px 0;
 	}
 
+	.beskrivelse {
+		padding: 10px 0;
+	}
+
 	.underline {
 		text-decoration: underline;
 	}
@@ -294,6 +298,11 @@ get_header();
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
 			<h1>Stjernetegn</h1>
+			<p class="beskrivelse">Jeg har så længe, jeg har kunnet huske været fascineret af astrologi og stjernetegn. Mine stjernetegnsmalerier er inspireret af de sarte farver, symbolikken og det romantiske, der fandtes i den kunst, der blev malet i astoligens verden fra 1600-1800-tallet. Alle tolv stjernetegn er malet i en unik, feminin og romantisk udstråling med farveinspiration fra de gamle sarte pastelfarver, som man brugte i den tidsperiode, derudover findes farver fra solnedgange, som jeg ser fra mit hjem.
+
+
+
+Find dit stjernetegn og lad det være et minde for dig om dine evner, talenter og dit potentiale her i livet.</p>
             <div class="horoskop_web">
 				<div class="circle">
                 	<img class="" src="https://tessafan.dk/bangelart/wp-content/uploads/2022/05/image_2022-05-31_193345776.png" alt="">

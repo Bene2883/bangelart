@@ -19,7 +19,7 @@ h1,
 h2,
 .site-title,
 .quote_text {
-  font-family: smoothy, sans-serif;
+  font-family: smoothy, cursive;
 }
 
 .site-title {
@@ -35,9 +35,13 @@ h2,
   text-decoration: none;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 /* baggrund */
 div#content.site-content {
-  background-image: url(https://tessafan.dk/bangelart/wp-content/uploads/2022/05/background-1.png);
+  background-image: url(https://tessafan.dk/bangelart/wp-content/uploads/2022/06/background.webp);
 }
 
 /* newsletter */
@@ -151,13 +155,15 @@ article#post-103 {
   padding: 0;
 }
 
-#primary-site-navigation li a:after {
+#primary-site-navigation li a:after,
+.back:after {
   content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);
   height: 1px;
   bottom: 3px;
+  left: 0;
   background-color: black;
   transform-origin: center;
   transition: transform 0.25s;
@@ -165,7 +171,8 @@ article#post-103 {
 
 #primary-site-navigation li a:hover:after,
 #primary-site-navigation li.current-menu-item a:after,
-#primary-site-navigation li.current-menu-parent a:after {
+#primary-site-navigation li.current-menu-parent a:after,
+.back:hover:after {
   transform: scaleX(1);
   transform-origin: center;
 }
@@ -262,10 +269,6 @@ img.wp-block-cover__image-background.wp-image-262 {
   color: #9989ba;
   text-align: center;
   padding: 2rem 5% 0;
-}
-
-div.wp-container-1 > * + * {
-  margin-block-start: 0;
 }
 
 .reverse_wrap {

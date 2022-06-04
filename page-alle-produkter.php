@@ -63,6 +63,7 @@ get_header();
       	display: grid;
       	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
      	gap: 40px 20px;
+		align-items: start;
     }
 
 	/* produkter styling */
@@ -126,19 +127,15 @@ get_header();
 			<h1>Produkter</h1>
 			<nav id="filter">
 				<button data-produkt="alle" class="selected">Alle værker</button>
-				<button data-produkt="19">Kærlighedskvinder</button>
-				<button data-produkt="22">Stjernetegn</button>
-				<button data-produkt="21">Originaler</button>
-				<button data-produkt="22">Plakater</button>
 			</nav>
 			<section id="container"></section>
 		</main><!-- #main -->
 		
 		<script>
+			// definerer variabler
 			let produkter;
 			let categories;
 			let filterProdukt = "alle";
-			const select = document.querySelector("#filter select");
 
 			// database links
 			const dbUrl = "https://tessafan.dk/bangelart/wp-json/wp/v2/produkt?per_page=100";
@@ -153,7 +150,17 @@ get_header();
 				console.log(produkter);
 				console.log(categories);
 				visProdukter();
-				addEventListenerToButtons()
+				opretKnapper();
+			}
+
+			// opretter knapper for hver kategori
+			function opretKnapper (){
+				categories.forEach(cat =>{
+					if (cat.name !== "Uncategorized") {
+						document.querySelector("#filter").innerHTML += `<button class="filter" data-produkt="${cat.id}">${cat.name}</button>`
+					}
+				})
+				addEventListenerToButtons();
 			}
 
 			// knap funtionalitet
@@ -163,6 +170,7 @@ get_header();
 				})
 			}
 
+			// valg af filter og styling af knap
 			function filtrering() {
 				filterProdukt = this.dataset.produkt;
 				document.querySelector(".selected").classList.remove("selected");
@@ -180,21 +188,18 @@ get_header();
 					if (filterProdukt == "alle" || produkt.categories.includes(parseInt(filterProdukt))) {
 						console.log(produkt.categories);
 						let klon = temp.cloneNode(true).content;
-						klon.querySelector(".img").style.backgroundImage = `url("${produkt.image[0].guid}")`; //vælger det første billede i image array
-						klon.querySelector(".overlay").style.backgroundImage = `url("${produkt.image[1].guid}")`; //vælger sekundært billede til hover effekt
+						klon.querySelector(".img").style.backgroundImage = `url("${produkt.image[0].guid}")`; // vælger det første billede i image array
+						klon.querySelector(".overlay").style.backgroundImage = `url("${produkt.image[1].guid}")`; // vælger sekundært billede til hover effekt
 						klon.querySelector(".title").innerHTML = produkt.title.rendered;			
 						klon.querySelector(".price").textContent = `${produkt.price} DKK`;
 						klon.querySelector("article").addEventListener("click", () => {
-							location.href = produkt.link; //leder til single view
+							location.href = produkt.link; // leder til single view
 						})
 						container.appendChild(klon);
 					}
 				})
 			}
 			getJson();
-			
-
-
 		</script>
 	</div><!-- #primary -->
 
